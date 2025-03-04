@@ -1,123 +1,88 @@
-
-// document.getElementById('btn-1').addEventListener('click', function(event){
-//     event.preventDefault();
-//     const devNumber=document.getElementById('dev-number').innerText;
-//     const convertedDevNumber=parseFloat(devNumber);
-//     const taskNumber=document.getElementById('task-number').innerText;
-//     const convertedTaskNumber=parseFloat(taskNumber);
-//     alert("Board Update Successfully");
-// })
-
-
-document.getElementById('cashout-box').addEventListener('click', function(event){
-    document.getElementById('addmoney').style.display = "none";
-    document.getElementById('cashout').style.display = "block";
-})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const completeButtons = document.querySelectorAll('.Completed');
-// // Get the task assigned counter element
-// const taskAssignedCounter = document.querySelector('.Task.Assigned + .05');
-// // Get the navbar counter element
-// const navbarCounter = document.querySelector('[class="23"]');
-
-// // Initialize current counts
-// let taskCount = 5; // Starting from 05
-// let navbarCount = 23; // Starting from 23
-
-// // Add click event listeners to all complete buttons
-// completeButtons.forEach(button => {
-//   button.addEventListener('click', function(e) {
-//     // Prevent multiple clicks on the same button
-//     if (this.disabled) return;
-    
-//     // Update task counter
-//     if (taskCount > 0) {
-//       taskCount -= 1;
-//       taskAssignedCounter.textContent = String(taskCount).padStart(2, '0');
-//     }
-    
-//     // Update navbar counter
-//     navbarCount += 1;
-//     navbarCounter.textContent = navbarCount;
-    
-//     // Disable the clicked button
-//     this.disabled = true;
-//     this.style.opacity = '0.5';
-//     this.style.cursor = 'not-allowed';
-    
-//     // Prevent event bubbling
-//     e.stopPropagation();
-//   });
-// });
-
-
-// function setupTaskCompletionHandlers() {
-//     // Get elements by their IDs (you'll need to add these IDs to your HTML elements)
-//     const taskAssignedCount = document.getElementById('taskAssignedCount');
-//     const navbarCount = document.getElementById('navbarCount');
-    
-//     // Get all completion buttons (assuming they have a class or ID)
-//     const completeButtons = document.querySelectorAll('.complete-button');
-    
-//     // Add click handlers to each button
-//     completeButtons.forEach(button => {
-//       button.addEventListener('click', function() {
-//         // Update task count
-//         if (taskAssignedCount) {
-//           taskAssignedCount.textContent = '04';
-//         }
-        
-//         // Update navbar count
-//         if (navbarCount) {
-//           navbarCount.textContent = '24';
-//         }
-        
-//         // Disable the clicked button
-//         this.disabled = true;
-//         this.style.backgroundColor = '#a29bfe';
-//         this.style.cursor = 'not-allowed';
-//       });
-//     });
-//   }
+function getCurrentTime() {
+    const now = new Date();
+    return now.toLocaleTimeString();
+  }
   
-//   // Call the setup function when the document is loaded
-//   document.addEventListener('DOMContentLoaded', setupTaskCompletionHandlers);
+  function getRandomColor() {
+    return "#" + Math.floor(Math.random() * 16777215).toString(16);
+  }
+  
+  function handleTaskCompletion(btn) {
+    alert("Board Update Successfully");
+  
+    const taskNumElem = document.getElementById("task-number");
+    let taskCount = parseInt(taskNumElem.innerText, 10);
+    if (taskCount > 0) {
+      taskCount--;
+      taskNumElem.innerText = taskCount < 10 ? "0" + taskCount : taskCount;
+    }
+  
+    const devNumElem = document.getElementById("dev-number");
+    let devCount = parseInt(devNumElem.innerText, 10);
+    devCount++;
+    devNumElem.innerText = devCount;
+  
+    // Get the task title from the card.
+    // Assumes the task title is in the first h3 element of the card container.
+    const card = btn.closest(".bg-blue-50.rounded-lg.p-4");
+    const taskTitleElem = card.querySelector("h3");
+    const taskTitle = taskTitleElem ? taskTitleElem.innerText : "Unknown Task";
+  
+    // Log activity in the Activity Log section
+    const activityLog = document.getElementById("activityLog");
+    const p = document.createElement("p");
+    p.className = "text-sm text-gray-600 mb-4";
+    p.innerText = `You have Completed The Task "${taskTitle}" at ${getCurrentTime()}`;
+    activityLog.appendChild(p);
+  
+    // Disable the button after completion
+    btn.disabled = true;
+    btn.classList.add("opacity-50", "cursor-not-allowed");
+  }
+  
+  // Add event listeners for all Completed buttons
+  const completeButtons = document.querySelectorAll(".complete-btn");
+  completeButtons.forEach((btn) => {
+    btn.addEventListener("click", function (event) {
+      event.preventDefault();
+      // Prevent double-clicking on an already disabled button.
+      if (!btn.disabled) {
+        handleTaskCompletion(btn);
+      }
+    });
+  });
+  
+  // Event listener for Clear History button
+  document
+    .getElementById("clear-history-btn")
+    .addEventListener("click", function () {
+      const activityLog = document.getElementById("activityLog");
+      activityLog.innerHTML = "";
+    });
+  
+  document.getElementById("theme").addEventListener("click", function () {
+    document.body.style.backgroundColor = getRandomColor();
+  });
+
+
+  function updateDateTime() {
+    const dayElement = document.getElementById("day");
+    const dateElement = document.getElementById("date");
+  
+    const now = new Date();
+    const options = {
+      weekday: "long",
+      month: "short",
+      day: "2-digit",
+      year: "numeric",
+    };
+  
+    const formattedDate = now.toLocaleDateString("en-US", options);
+    const [weekday, month, day, year] = formattedDate.split(" ");
+  
+    dayElement.innerText = `${weekday}`;
+    dateElement.innerText = `${month} ${day} ${year}`;
+  }
+  
+  setInterval(updateDateTime, 1000);
+  updateDateTime();
