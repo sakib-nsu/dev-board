@@ -22,39 +22,36 @@ function getCurrentTime() {
     devCount++;
     devNumElem.innerText = devCount;
   
-    // Get the task title from the card.
-    // Assumes the task title is in the first h3 element of the card container.
+
     const card = btn.closest(".bg-blue-50.rounded-lg.p-4");
     const taskTitleElem = card.querySelector("h3");
     const taskTitle = taskTitleElem ? taskTitleElem.innerText : "Unknown Task";
   
-    // Log activity in the Activity Log section
+
     const activityLog = document.getElementById("activityLog");
     const p = document.createElement("p");
     p.className = "text-sm text-gray-600 mb-4";
     p.innerText = `You have Completed The Task "${taskTitle}" at ${getCurrentTime()}`;
     activityLog.appendChild(p);
   
-    // Disable the button after completion
+
     btn.disabled = true;
     btn.classList.add("opacity-50", "cursor-not-allowed");
   }
   
-  // Add event listeners for all Completed buttons
+
   const completeButtons = document.querySelectorAll(".complete-btn");
   completeButtons.forEach((btn) => {
     btn.addEventListener("click", function (event) {
       event.preventDefault();
-      // Prevent double-clicking on an already disabled button.
+
       if (!btn.disabled) {
         handleTaskCompletion(btn);
       }
     });
   });
   
-  // Event listener for Clear History button
-  document
-    .getElementById("clear-history-btn")
+  document.getElementById("clear-history-btn")
     .addEventListener("click", function () {
       const activityLog = document.getElementById("activityLog");
       activityLog.innerHTML = "";
