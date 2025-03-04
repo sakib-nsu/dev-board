@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blogs</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-blue-50">
+    <div class="container mx-auto p-4">
+    <header class="flex justify-between items-center py-4 rounded-lg bg-white mb-4">
+        <div class="flex items-center">
+            <div class="px-4">
+                <img class="h-12 w-12" src="assets/logo.png" alt="">
+            </div class="py-2">
+            <h1 class="text-3xl py-2">Dev<span class="text-3xl font-bold">Board</span></h1>
+        </div>
+        <button onclick="goToAnotherPage()" id="btn-back" class="btn text-lg text-white bg-[#3752FD] rounded-sm font-medium cursor-pointer mr-4">Back to Desk</button>
+    </header>
+
+    <main>
+        <h1 class="text-3xl text-center font-bold mb-8">Blogs</h1>
+        <div class="mb-4">
+            <div class="bg-white p-4 font-bold mb-1">
+                <h2>Question-1: What are the different ways to select an element in the DOM?</h2>
+            </div>
+            <div>
+                <div class="bg-white p-4 font-normal"><p><span class="font-medium">getElementById():</span> Selects an element by its ID.<br>
+                    <span class="font-medium">getElementsByClassName():</span> Selects all elements that have a specific class name.<br>
+                    <span class="font-medium">getElementsByTagName():</span> Selects all elements with a specific tag name.<br>
+                    <span class="font-medium">querySelector():</span> Uses CSS selectors to select the first matching element.<br>
+                    <span class="font-medium">querySelectorAll():</span> Uses CSS selectors to select all matching elements.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-4">
+            <div class="bg-white p-4 font-bold mb-1">
+                <h2>Question-2: What is the difference between innerHTML, innerText, and textContent?</h2>
+            </div>
+            <div>
+                <div class="bg-white p-4 font-normal"><p><span class="font-medium">innerHTML:</span> Gets or sets the HTML content inside an element. If you use innerHTML to set HTML, it will render the HTML as part of the document.<br>
+
+                <span class="font-medium">innerText:</span> Gets or sets the text content of an element and its descendants, but unlike innerHTML, it respects the visibility of elements. innerText will not include text from hidden elements, and it also converts HTML into human-readable text.<br>
+                    
+                <span class="font-medium">textContent:</span> Gets or sets the text content of an element and its descendants. It includes the text in all elements, regardless of styling, but does not parse any HTML tags. It treats all HTML as plain text.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-4">
+            <div class="bg-white p-4 font-bold mb-1">
+                <h2>Question-3: What is event delegation in the DOM?</h2>
+            </div>
+            <div>
+                <div class="bg-white p-4 font-normal"><p>Event delegation in the DOM is a technique where you use a single event listener on a parent element to manage events from multiple child elements. Instead of adding an event listener to each child, you add one to the parent and use it to handle events that bubble up from the children. This makes your code cleaner and can improve performance, especially with a large number of elements.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-4">
+            <div class="bg-white p-4 font-bold mb-1">
+                <h2>Question-4: What is event bubbling in the DOM?</h2>
+            </div>
+            <div>
+                <div class="bg-white p-4 font-normal"><p>Event bubbling in the DOM (Document Object Model) is a method of event propagation where if an event is triggered on an element, it will then propagate (bubble) up through its ancestors in the hierarchy. This means the event is first handled by the innermost element and then successively by each of its parent elements up to the root. This behavior allows for more generalized event handling, where a single handler on a parent element can capture events from any of its child elements, reducing the need to attach event handlers to individual nodes.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-4">
+            <div class="bg-white p-4 font-bold mb-1">
+                <h2>Question-5: How do you create, add, and remove elements using JavaScript?</h2>
+            </div>
+            <div>
+                <div class="bg-white p-4 font-normal"><p>In JavaScript, manipulation of the Document Object Model allows dynamic changes to the content, structure, and style of a webpage. This manipulation is achieved through methods provided by the DOM API that enable developers to create, add, or remove elements programmatically.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+
+    </div>
+    <script src="scripts/blogs.js"></script>
+</body>
+</html>
