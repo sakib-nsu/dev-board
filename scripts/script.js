@@ -37,6 +37,10 @@ function getCurrentTime() {
 
     btn.disabled = true;
     btn.classList.add("opacity-50", "cursor-not-allowed");
+
+    if (taskCount === 0) {
+      alert("Congratulations! You have completed all your tasks.");
+  }
   }
   
 
